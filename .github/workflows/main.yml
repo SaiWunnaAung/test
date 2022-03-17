@@ -1,9 +1,9 @@
-name: A workflow for my group3 App
+name: A workflow for my Hello World App
 on: push
 
 jobs:
   build:
-    name: group3 action
+    name: Hello world action
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
