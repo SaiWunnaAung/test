@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /**
  * Declaring public class for DatabaseConnection
  */
@@ -93,7 +94,11 @@ public class DatabaseConnection {
     }
 
 
+
+    public ArrayList<Country> regionreport1(String query){
+
     public ArrayList<Country> report1(String query){
+
          Statement statement;
          ResultSet resultSet;
         ArrayList<Country> countries = new ArrayList<>();
@@ -116,10 +121,18 @@ public class DatabaseConnection {
         }
         return countries;
     }
+
+    public void regionreport1Output(){
+        Report report = new Report();
+        ArrayList<Country> country ;
+        country = regionreport1("select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC");
+        report.regionReport(country);
+
     public void report1Output(){
         Report report = new Report();
         ArrayList<Country> country ;
         country = report1("select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC");
         report.countryReport(country);
+
     }
 }

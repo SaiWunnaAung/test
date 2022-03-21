@@ -14,7 +14,10 @@ public class App
             System.out.println(args[0]);
             db.connect(args[0]);
         }
+        db.regionreport1Output();
+
         db.report1Output();
+
         db.disconnect();
     }
 }
