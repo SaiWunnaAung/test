@@ -1,7 +1,10 @@
 package com.napier.sem;
 
 /**
+
  * Represents a country but Region
+ * Represents a country
+
  */
 public class Country {
 
