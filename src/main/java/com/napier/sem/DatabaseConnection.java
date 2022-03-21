@@ -95,7 +95,29 @@ public class DatabaseConnection {
 
 
 
-    public ArrayList<Country> regionreport1(String query){
+       public ArrayList<Country> regionreport1(String query){
+         Statement statement;
+         ResultSet resultSet;
+        ArrayList<Country> countries = new ArrayList<>();
+        try {
+            statement = con.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                Country country = new Country();
+                country.setName(resultSet.getString("name"));
+                country.setContinent(resultSet.getString("continent"));
+                country.setRegion(resultSet.getString("region"));
+                country.setPopulation(resultSet.getLong("population"));
+                country.setCapital(resultSet.getString("capital"));
+                country.setCode(resultSet.getString("code"));
+                countries.add(country);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return countries;
+    }
 
     public ArrayList<Country> report1(String query){
 
