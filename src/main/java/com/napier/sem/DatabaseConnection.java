@@ -149,7 +149,7 @@ public class DatabaseConnection {
         ArrayList<Country> country ;
         country = regionreport1("select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC");
         report.regionReport(country);
-
+}
     public void report1Output(){
         Report report = new Report();
         ArrayList<Country> country ;
