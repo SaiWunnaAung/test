@@ -1,7 +1,5 @@
 package com.napier.sem;
 
-import java.util.Scanner;
-
 /**
  * Declaring public class for App
  */
@@ -34,8 +32,7 @@ public class App
      * method for output report menu
      */
     private void reportMenu() {
-        Scanner input = new Scanner(System.in);
-        do {
+//        Scanner input = new Scanner(System.in);
             String[] reportNo={
                     "0. Exit from system",
                     "1. All the countries in the world organised by largest population to smallest",
@@ -75,19 +72,15 @@ public class App
             for(int i=0; i<reportNo.length;i++){
                 System.out.println(reportNo[i]);
             }
-            Scanner sc = new Scanner(System.in);
-            System.out.print("Enter Report Number: ");
-            chooseMenu(Integer.parseInt(sc.nextLine()));
-
-            System.out.print("Type YES to do again: ");
-        }while (input.next().equalsIgnoreCase("YES"));
+        System.out.println("Choose Report : 2");
+            chooseMenu(2);
 
     }
+
     /**
      * method for choose report items
      */
     private void chooseMenu(int num){
-        Scanner sc = new Scanner(System.in);
         switch (num) {
             case 1:
                 System.out.println("All the countries in the world organised by largest population to smallest");
@@ -96,8 +89,8 @@ public class App
 
             case 2:
                 System.out.println("All the countries in a continent organised by largest population to smallest");
-                System.out.print("Enter continent: ");
-                db.countryReportTwoOutput(sc.nextLine());
+                System.out.println("Enter continent: Asia");
+                db.countryReportTwoOutput("Asia");
                 break;
 
             case 3:
@@ -124,8 +117,8 @@ public class App
 
             case 8:
                 System.out.println("All the cities in a continent organised by largest population to smallest");
-                System.out.print("Enter Continent: ");
-                db.cityReportTwoOutput(sc.nextLine());
+                System.out.println("Enter Continent: Asia");
+                db.cityReportTwoOutput("Asia");
                 break;
 
 
@@ -206,23 +199,23 @@ public class App
 
             case 27:
                 System.out.println("The population of a continent");
-                System.out.print("Enter Continent: ");
-                String contt = sc.nextLine();
-                db.populationReportTwoOutput(contt);
+                System.out.println("Enter Continent: Europe");
+//                String contt = sc.nextLine();
+                db.populationReportTwoOutput("Europe");
                 break;
 
             case 28:
                 System.out.println("The population of a region");
-                System.out.print("Enter Region: ");
-                String regg = sc.nextLine();
-                db.populationReportThreeOutput(regg);
+                System.out.println("Enter Region: North America");
+//                String regg = sc.nextLine();
+                db.populationReportThreeOutput("North America");
                 break;
 
             case 29:
                 System.out.println("The population of a country");
-                System.out.print("Enter Country: ");
-                String cou = sc.nextLine();
-                db.populationReportFourOutput(cou);
+                System.out.println("Enter Country: United Kingdom");
+//                String cou = sc.nextLine();
+                db.populationReportFourOutput("United Kingdom");
                 break;
 
 
