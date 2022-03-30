@@ -17,7 +17,7 @@ public class AppIntegrationTest {
     {
         report = new Report();
         db = DatabaseConnection.Instance();
-        db.connect("localhost:33060", 0);
+        db.connect("localhost:33060", 30000);
     }
     @Test
     void testGetCountry()
