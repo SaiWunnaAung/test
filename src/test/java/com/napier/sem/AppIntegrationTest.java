@@ -14,7 +14,7 @@ public class AppIntegrationTest {
     static Report report;
     static DatabaseConnection db;
     @BeforeAll
-    static void init()
+    static void init() throws ClassNotFoundException, InterruptedException, SQLException
     {
         report = new Report();
         db = DatabaseConnection.Instance();

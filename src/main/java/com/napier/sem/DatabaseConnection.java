@@ -39,36 +39,21 @@ public class DatabaseConnection {
      * Connect to the MySQL database.
      */
 
-    public void connect(String location, long delay) {
-        try {
-            // Load Database driver
+    public void connect(String location, long delay) throws ClassNotFoundException, InterruptedException, SQLException {
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
+
 
         int retries = 20;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://"+location+"/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + i);
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
+
         }
     }
 
@@ -149,7 +134,7 @@ public class DatabaseConnection {
                 country.setCode(resultSet.getString("code"));
                 countries.add(country);
             }
-        } catch (SQLException e) {
+        }/* test ignore next */ catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
