@@ -116,6 +116,9 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
         return countries;
     }
