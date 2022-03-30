@@ -4,6 +4,7 @@ import com.napier.sem.model.Country;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,16 +21,14 @@ public class AppIntegrationTest {
         db.connect("localhost:33060", 30000);
     }
     @Test
-    void testGetCountry()
-    {
+    void testGetCountry() throws SQLException {
         Country countries = db.countryReportOne().get(0);
         assertEquals(countries.getCode(), "CHN");
 //        System.out.println(countries.getCode());
     }
 
     @Test
-    void testReportOne()
-    {
+    void testReportOne() throws SQLException {
         ArrayList<Country> countries = db.countryReportOne();
         assertNotNull(countries);
         assertEquals(countries.size() > 0, true);

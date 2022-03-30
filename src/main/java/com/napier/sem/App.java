@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import java.sql.SQLException;
+
 /**
  * Declaring public class for App
  */
@@ -15,8 +17,7 @@ public class App
      */
     private static App app;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws SQLException {
         app = new App(); // create object
         //Add database connection
         if (args.length < 1) {
@@ -31,7 +32,7 @@ public class App
     /**
      * method for output report menu
      */
-    private void reportMenu() {
+    private void reportMenu() throws SQLException {
 //        Scanner input = new Scanner(System.in);
             String[] reportNo={
                     "0. Exit from system",
@@ -80,7 +81,7 @@ public class App
     /**
      * method for choose report items
      */
-    private void chooseMenu(int num){
+    private void chooseMenu(int num) throws SQLException {
         switch (num) {
             case 1:
                 System.out.println("All the countries in the world organised by largest population to smallest");

@@ -95,12 +95,12 @@ public class DatabaseConnection {
      * @param query of sql
      * @return countries ArrayList
      */
-    public ArrayList<Country> countryReportOne(){
+    public ArrayList<Country> countryReportOne() throws SQLException {
          Statement statement;
          ResultSet resultSet;
         String query = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC";
         ArrayList<Country> countries = new ArrayList<>();
-        try {
+
             statement = con.createStatement();
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
@@ -113,20 +113,14 @@ public class DatabaseConnection {
                 country.setCode(resultSet.getString("code"));
                 countries.add(country);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
+
         return countries;
     }
 
     /**
      *Methods for output data for CountryReportOne
      */
-    public void countryReportOneOutput(){
+    public void countryReportOneOutput() throws SQLException {
         Report report = new Report();
         ArrayList<Country> country ;
         country = countryReportOne();
