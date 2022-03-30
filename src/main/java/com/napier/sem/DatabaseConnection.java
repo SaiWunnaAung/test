@@ -95,9 +95,10 @@ public class DatabaseConnection {
      * @param query of sql
      * @return countries ArrayList
      */
-    public ArrayList<Country> countryReportOne(String query){
+    public ArrayList<Country> countryReportOne(){
          Statement statement;
          ResultSet resultSet;
+        String query = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC";
         ArrayList<Country> countries = new ArrayList<>();
         try {
             statement = con.createStatement();
@@ -125,7 +126,7 @@ public class DatabaseConnection {
     public void countryReportOneOutput(){
         Report report = new Report();
         ArrayList<Country> country ;
-        country = countryReportOne("select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC");
+        country = countryReportOne();
         report.countryReportTemplate(country);
     }
 
