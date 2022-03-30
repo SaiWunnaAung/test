@@ -17,7 +17,7 @@ public class App
      */
     private static App app;
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, InterruptedException, SQLException {
         app = new App(); // create object
         //Add database connection
         if (args.length < 1) {

@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import com.napier.sem.model.Country;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ public class AppIntegrationTest {
     static Report report;
     static DatabaseConnection db;
     @BeforeAll
-    static void init()
+    static void init() throws ClassNotFoundException, InterruptedException, SQLException
     {
         report = new Report();
         db = DatabaseConnection.Instance();
@@ -35,4 +36,5 @@ public class AppIntegrationTest {
         report.countryReportTemplate(countries);
 //        System.out.println(countries.getCode());
     }
+
 }
