@@ -77,9 +77,9 @@ public class App
             for(int i=0; i<reportItem.length;i++){
                 System.out.println(reportItem[i]);
             }
-            System.out.println("Choose Report : 2");
+            System.out.println("Choose Report : 24");
             // Call chooseMenu method
-            chooseMenu(2);
+            chooseMenu(24);
 
     }
 
@@ -106,14 +106,19 @@ public class App
                 report.countryReportTemplate(db.countryReportTwo("Asia")); // Print report
                 break;
 
-            /*If user choose 3 the system will print Not available in this version*/
+            /*If user choose 3 the system will print all the countries in a region
+            organised by largest population to smallest*/
             case 3:
-                System.out.println("Not available in this version");
+                System.out.println("All the countries in a region organised by largest population to smallest");
+                System.out.println("Enter region: Eastern Asia");
+                report.countryReportTemplate(db.countryReportThree("Eastern Asia"));// Print report
                 break;
 
-            /*If user choose 4 the system will print Not available in this version*/
+            /*If user choose 4 the system will print the top N populated countries in the world*/
             case 4:
-                System.out.println("Not available in this version");
+                System.out.println("The top N populated countries in the world");
+                System.out.println("Enter number: 5");
+                report.countryReportTemplate(db.countryReportFour(5));// Print report
                 break;
 
             /*If user choose 5 the system will print Not available in this version*/
@@ -141,14 +146,20 @@ public class App
                 report.cityReportTemplate(db.cityReportTwo("Asia")); // Print report
                 break;
 
-            /*If user choose 9 the system will print Not available in this version*/
+            /*If user choose 9 the system will print all the cities in a region
+            organised by largest population to smallest*/
             case 9:
-                System.out.println("Not available in this version");
+                System.out.println("All the cities in a region organised by largest population to smallest");
+                System.out.println("Enter Region: Eastern Asia");
+                report.cityReportTemplate(db.cityReportThree("Eastern Asia")); // Print report
                 break;
 
-            /*If user choose 10 the system will print Not available in this version*/
+            /*If user choose 10 the system will print all the cities in a country
+            organised by largest population to smallest*/
             case 10:
-                System.out.println("Not available in this version");
+                System.out.println("All the cities in a country organised by largest population to smallest");
+                System.out.println("Enter Country: Thailand");
+                report.cityReportTemplate(db.cityReportFour("Thailand")); // Print report
                 break;
 
             /*If user choose 11 the system will print Not available in this version*/
@@ -161,9 +172,12 @@ public class App
                 System.out.println("Not available in this version");
                 break;
 
-            /*If user choose 13 the system will print Not available in this version*/
+            /*If user choose 13 the system will print the top N populated cities in a continent*/
             case 13:
-                System.out.println("Not available in this version");
+                System.out.println("The top N populated cities in a continent");
+                System.out.println("Enter continent: Asia");
+                System.out.println("Enter number: 7");
+                report.cityReportTemplate(db.cityReportSeven(7,"Asia"));// Print report
                 break;
 
             /*If user choose 14 the system will print Not available in this version*/
@@ -213,14 +227,18 @@ public class App
                 System.out.println("Not available in this version");
                 break;
 
-            /*If user choose 23the system will print Not available in this version*/
+            /*If user choose 23the system will print the population of people,
+            people living in cities, and people not living in cities in each continent*/
             case 23:
-                System.out.println("Not available in this version");
+                System.out.println("The population of people, people living in cities, and people not living in cities in each continent");
+                report.populationReportTemplate(db.populationReportOne()); // Print report
                 break;
 
-            /*If user choose 24 the system will print Not available in this version*/
+            /*If user choose 24 the system will print the population of people,
+            people living in cities, and people not living in cities in each region*/
             case 24:
-                System.out.println("Not available in this version");
+                System.out.println("The population of people, people living in cities, and people not living in cities in each region");
+                report.populationReportTemplate(db.populationReportTwo()); // Print report
                 break;
 
             /*If user choose 25 the system will print Not available in this version*/
@@ -231,7 +249,7 @@ public class App
             /*If user choose 26 the system will print the population of the world*/
             case 26:
                 System.out.println("The population of the world");
-                report.simplePopulationReportTemplate(db.populationReportOne()); // Print report
+                report.simplePopulationReportTemplate(db.additionalReportOne()); // Print report
                 break;
 
             /*If user choose 27 the system will the population of a continent*/
@@ -239,7 +257,7 @@ public class App
                 System.out.println("The population of a continent");
                 System.out.println("Enter Continent: Europe");
 //                String contt = sc.nextLine();
-                report.simplePopulationReportTemplate(db.populationReportTwo("Europe"));// Print report
+                report.simplePopulationReportTemplate(db.additionalReportTwo("Europe"));// Print report
                 break;
 
             /*If user choose 28 the system will the population of a region*/
@@ -247,7 +265,7 @@ public class App
                 System.out.println("The population of a region");
                 System.out.println("Enter Region: North America");
 //                String regg = sc.nextLine();
-                report.simplePopulationReportTemplate(db.populationReportThree("North America"));// Print report
+                report.simplePopulationReportTemplate(db.additionalReportThree("North America"));// Print report
                 break;
 
             /*If user choose 29 the system will the population of a country*/
@@ -255,7 +273,7 @@ public class App
                 System.out.println("The population of a country");
                 System.out.println("Enter Country: United Kingdom");
 //                String cou = sc.nextLine();
-                report.simplePopulationReportTemplate(db.populationReportFour("United Kingdom"));// Print report
+                report.simplePopulationReportTemplate(db.additionalReportFour("United Kingdom"));// Print report
                 break;
 
             /*If user choose 30 the system will print Not available in this version*/
@@ -272,7 +290,7 @@ public class App
             who speak Chinese, English, Hindi, Spanish or Arabic in the world*/
             case 32:
                 System.out.println("The number of people who speak Chinese, English, Hindi, Spanish or Arabic in the world.");
-                report.advancePopulationReportTemplate(db.populationReportSeven()); // Print report
+                report.advancePopulationReportTemplate(db.additionalReportSeven()); // Print report
                 break;
 
             /*If user type invalid input the system will show error*/

@@ -27,8 +27,11 @@ public class DatabaseConnection {
      * @return Instance of DatabaseConnection
      */
     public static DatabaseConnection Instance() {
-        // Check instance is null, if null assign new connection to instance variable
-        instance = instance == null ? new DatabaseConnection() : instance;
+        // Check instance is null
+        if (instance == null){
+            // If null assign new connection to instance variable
+            instance = new DatabaseConnection();
+        }
         // Return instance of DatabaseConnection
         return instance;
     }
@@ -145,6 +148,78 @@ public class DatabaseConnection {
     }
 
     /**
+     * Methods for retrieve data for CountryReportThree
+     * @param region name
+     * @return countries ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<Country> countryReportThree(String region) throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "select con.code, con.name, con.continent, con.region , con.population, cit.name as capital from country con join city cit on capital=id where region = '"+region+"' order by population DESC";
+        //Create countries arraylist to store country data
+        ArrayList<Country> countries = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+        while (resultSet.next()) {
+            /* Create country object and set data in setter method */
+            Country country = new Country();
+            country.setName(resultSet.getString("name"));
+            country.setContinent(resultSet.getString("continent"));
+            country.setRegion(resultSet.getString("region"));
+            country.setPopulation(resultSet.getLong("population"));
+            country.setCapital(resultSet.getString("capital"));
+            country.setCode(resultSet.getString("code"));
+            // Add country object in countries array list
+            countries.add(country);
+        }
+        // Return countries array list
+        return countries;
+    }
+
+    /**
+     * Methods for retrieve data for CountryReportFour
+     * @param topNum of top
+     * @return countries ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<Country> countryReportFour(int topNum) throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC LIMIT "+topNum+" ";
+        //Create countries arraylist to store country data
+        ArrayList<Country> countries = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+        while (resultSet.next()) {
+            /* Create country object and set data in setter method */
+            Country country = new Country();
+            country.setName(resultSet.getString("name"));
+            country.setContinent(resultSet.getString("continent"));
+            country.setRegion(resultSet.getString("region"));
+            country.setPopulation(resultSet.getLong("population"));
+            country.setCapital(resultSet.getString("capital"));
+            country.setCode(resultSet.getString("code"));
+            // Add country object in countries array list
+            countries.add(country);
+        }
+        // Return countries array list
+        return countries;
+    }
+
+    /**
      * Methods for retrieve data for CityReportOne
      * @return cities ArrayList
      * @throws SQLException
@@ -212,6 +287,109 @@ public class DatabaseConnection {
     }
 
     /**
+     * Methods for retrieve data for CityReportThree
+     * @param region name
+     * @return capitalCities ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<City> cityReportThree(String region) throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "select city.name, country.name AS country, city.district, city.population from city city join country country on CountryCode=code where country.region = '"+region+"' order by city.population DESC";
+        //Create cities arraylist to store city data
+        ArrayList<City> cities = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+            while (resultSet.next()) {
+                /* Create city object and set data in setter method */
+                City city = new City();
+                city.setName(resultSet.getString("name"));
+                city.setCountry(resultSet.getString("country"));
+                city.setDistrict(resultSet.getString("district"));
+                city.setPopulation(resultSet.getLong("population"));
+                // Add city object in countries array list
+                cities.add(city);
+            }
+        // Return cities array list
+        return cities;
+    }
+
+  /**
+     * Methods for retrieve data for CityReportFour
+     * @param country name
+     * @return capitalCities ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<City> cityReportFour(String country) throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "select city.name, country.name AS country, city.district, city.population from city city join country country on CountryCode=code where country.name = '"+country+"' order by city.population DESC";
+        //Create cities arraylist to store city data
+        ArrayList<City> cities = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+            while (resultSet.next()) {
+                /* Create city object and set data in setter method */
+                City city = new City();
+                city.setName(resultSet.getString("name"));
+                city.setCountry(resultSet.getString("country"));
+                city.setDistrict(resultSet.getString("district"));
+                city.setPopulation(resultSet.getLong("population"));
+                // Add city object in countries array list
+                cities.add(city);
+            }
+        // Return cities array list
+        return cities;
+    }
+
+  /**
+     * Methods for retrieve data for CityReportSeven
+     * @param topNum
+     * @param continent
+     * @return capitalCities ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<City> cityReportSeven(int topNum, String continent) throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "select city.name, country.name As country, city.district, city.population from city city join country country on CountryCode=code where continent = '"+continent+"' order by city.population DESC LIMIT "+topNum+" ";
+        //Create cities arraylist to store city data
+        ArrayList<City> cities = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+            while (resultSet.next()) {
+                /* Create city object and set data in setter method */
+                City city = new City();
+                city.setName(resultSet.getString("name"));
+                city.setCountry(resultSet.getString("country"));
+                city.setDistrict(resultSet.getString("district"));
+                city.setPopulation(resultSet.getLong("population"));
+                // Add city object in countries array list
+                cities.add(city);
+            }
+        // Return cities array list
+        return cities;
+    }
+
+    /**
      * Methods for retrieve data for CapitalCityReportOne
      * @return capitalCities ArrayList
      * @throws SQLException
@@ -254,6 +432,76 @@ public class DatabaseConnection {
         // Define resultSet  variable
         ResultSet resultSet;
         //Write sql retrieve query for report
+        String query = "Select country.continent, SUM(country.population) as TotalPopulation, SUM((select SUM(population) from city where countrycode = country.code)) AS popInCity, (SUM((select SUM(population) from city where countrycode = country.code)) / SUM(country.population))*100 as percentInCities , (sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) as popNotInCity, ((sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) / SUM(country.population))*100 as percentNotInCities from country GROUP BY country.continent";
+        //Create populations arraylist to store population data
+        ArrayList<Population> populations = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+        while (resultSet.next()) {
+            /* Create population object and set data in setter method */
+            Population population = new Population();
+            population.setName(resultSet.getString("continent"));
+            population.setPopulation(resultSet.getLong("TotalPopulation"));
+            population.setPopInCity(resultSet.getLong("popInCity"));
+            population.setPopNotInCity(resultSet.getLong("popNotInCity"));
+            population.setPercentagePopulationInCities(resultSet.getFloat("percentInCities"));
+            population.setPercentagePopulationNotInCities(resultSet.getFloat("percentNotInCities"));
+            // Add population object in populations array list
+            populations.add(population);
+        }
+        // Return populations array list
+        return populations;
+    }
+
+    /**
+     * Methods for retrieve data for PopulationReportTwo
+     * @return populations ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<Population> populationReportTwo() throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "Select country.region, SUM(country.population) as TotalPopulation, SUM((select SUM(population) from city where countrycode = country.code)) AS popInCity, (SUM((select SUM(population) from city where countrycode = country.code)) / SUM(country.population))*100 as percentInCities , (sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) as popNotInCity, ((sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) / SUM(country.population))*100 as percentNotInCities from country GROUP BY country.region";
+        //Create populations arraylist to store population data
+        ArrayList<Population> populations = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+        while (resultSet.next()) {
+            /* Create population object and set data in setter method */
+            Population population = new Population();
+            population.setName(resultSet.getString("region"));
+            population.setPopulation(resultSet.getLong("TotalPopulation"));
+            population.setPopInCity(resultSet.getLong("popInCity"));
+            population.setPopNotInCity(resultSet.getLong("popNotInCity"));
+            population.setPercentagePopulationInCities(resultSet.getFloat("percentInCities"));
+            population.setPercentagePopulationNotInCities(resultSet.getFloat("percentNotInCities"));
+            // Add population object in populations array list
+            populations.add(population);
+        }
+        // Return populations array list
+        return populations;
+    }
+
+    /**
+     * Methods for retrieve data for AdditionalReportOne
+     * @return populations ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<Population> additionalReportOne() throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
         String query = "SELECT sum(population) As population FROM country";
         //Create populations arraylist to store population data
         ArrayList<Population> populations = new ArrayList<>();
@@ -275,12 +523,12 @@ public class DatabaseConnection {
     }
 
       /**
-     * Methods for retrieve data for PopulationReportTwo
+     * Methods for retrieve data for AdditionalReportTwo
      * @param continent name
      * @return populations ArrayList
      * @throws SQLException
      */
-    public ArrayList<Population> populationReportTwo(String continent) throws SQLException {
+    public ArrayList<Population> additionalReportTwo(String continent) throws SQLException {
         // Define statement variable
         Statement statement;
         // Define resultSet  variable
@@ -307,12 +555,12 @@ public class DatabaseConnection {
     }
 
       /**
-     * Methods for retrieve data for PopulationReportThree
+     * Methods for retrieve data for AdditionalReportThree
      * @param region name
      * @return populations ArrayList
      * @throws SQLException
      */
-    public ArrayList<Population> populationReportThree(String region) throws SQLException {
+    public ArrayList<Population> additionalReportThree(String region) throws SQLException {
         // Define statement variable
         Statement statement;
         // Define resultSet  variable
@@ -339,12 +587,12 @@ public class DatabaseConnection {
     }
 
       /**
-     * Methods for retrieve data for PopulationReportFour
+     * Methods for retrieve data for AdditionalReportFour
      * @param country name
      * @return populations ArrayList
      * @throws SQLException
      */
-    public ArrayList<Population> populationReportFour(String country) throws SQLException {
+    public ArrayList<Population> additionalReportFour(String country) throws SQLException {
         // Define statement variable
         Statement statement;
         // Define resultSet  variable
@@ -371,11 +619,11 @@ public class DatabaseConnection {
     }
 
       /**
-     * Methods for retrieve data for PopulationReportFive
+     * Methods for retrieve data for AdditionalReportSeven
      * @return populations ArrayList
      * @throws SQLException
      */
-    public ArrayList<Population> populationReportSeven() throws SQLException {
+    public ArrayList<Population> additionalReportSeven() throws SQLException {
         // Define statement variable
         Statement statement;
         // Define resultSet  variable

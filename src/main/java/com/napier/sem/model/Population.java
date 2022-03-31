@@ -16,6 +16,16 @@ public class Population {
     private long population;
 
     /**
+     * The population not living in city
+     */
+    private long popNotInCity;
+
+    /**
+     * The population living in city
+     */
+    private long popInCity;
+
+    /**
      * The total population of the continent/region/country living in cities (including a %).
      */
     private float percentagePopulationInCities;
@@ -56,6 +66,38 @@ public class Population {
      */
     public void setPopulation(long population) {
         this.population = population;
+    }
+
+    /**
+     * method to get population not in city
+     * @return population not in city
+     */
+    public long getPopNotInCity() {
+        return popNotInCity;
+    }
+
+    /**
+     * method to set population not in city
+     * @param popNotInCity population not in city
+     */
+    public void setPopNotInCity(long popNotInCity) {
+        this.popNotInCity = popNotInCity;
+    }
+
+    /**
+     * method to get population in city
+     * @return population in city
+     */
+    public long getPopInCity() {
+        return popInCity;
+    }
+
+    /**
+     * method to set population in city
+     * @param popInCity population in city
+     */
+    public void setPopInCity(long popInCity) {
+        this.popInCity = popInCity;
     }
 
     /**
