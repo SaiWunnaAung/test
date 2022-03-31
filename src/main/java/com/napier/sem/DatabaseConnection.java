@@ -27,11 +27,8 @@ public class DatabaseConnection {
      * @return Instance of DatabaseConnection
      */
     public static DatabaseConnection Instance() {
-        // Check instance is null
-        if (instance == null){
-            // If null assign new connection to instance variable
-            instance = new DatabaseConnection();
-        }
+        // Check instance is null, if null assign new connection to instance variable
+        instance = instance == null ? new DatabaseConnection() : instance;
         // Return instance of DatabaseConnection
         return instance;
     }

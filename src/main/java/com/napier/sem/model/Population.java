@@ -20,6 +20,10 @@ public class Population {
      */
     private float percentagePopulationInCities;
 
+    /**
+     * The total population of the continent/region/country not living in cities (including a %).
+     */
+    private float percentagePopulationNotInCities;
 
 
     /**
@@ -70,5 +74,19 @@ public class Population {
         this.percentagePopulationInCities = percentagePopulationInCities;
     }
 
+    /**
+     * method to get population of the continent/region/country not living in cities (including a %)
+     * @return percentagePopulationNotInCities of the continent/region/country
+     */
+    public float getPercentagePopulationNotInCities() {
+        return percentagePopulationNotInCities;
+    }
 
+    /**
+     * method to set population of the continent/region/country not living in cities (including a %)
+     * @param percentagePopulationNotInCities of the continent/region/country
+     */
+    public void setPercentagePopulationNotInCities(float percentagePopulationNotInCities) {
+        this.percentagePopulationNotInCities = percentagePopulationNotInCities;
+    }
 }
