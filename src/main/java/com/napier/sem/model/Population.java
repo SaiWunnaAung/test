@@ -28,12 +28,12 @@ public class Population {
     /**
      * The total population of the continent/region/country living in cities (including a %).
      */
-    private float percentagePopulationInCities;
+    private double percentagePopulationInCities;
 
     /**
      * The total population of the continent/region/country not living in cities (including a %).
      */
-    private float percentagePopulationNotInCities;
+    private double percentagePopulationNotInCities;
 
 
     /**
@@ -104,7 +104,7 @@ public class Population {
      * method to get population of the continent/region/country living in cities (including a %)
      * @return percentagePopulationInCities of the continent/region/country
      */
-    public float getPercentagePopulationInCities() {
+    public double getPercentagePopulationInCities() {
         return percentagePopulationInCities;
     }
 
@@ -112,7 +112,7 @@ public class Population {
      * method to set population of the continent/region/country living in cities (including a %)
      * @param percentagePopulationInCities  of the continent/region/country
      */
-    public void setPercentagePopulationInCities(float percentagePopulationInCities) {
+    public void setPercentagePopulationInCities(double percentagePopulationInCities) {
         this.percentagePopulationInCities = percentagePopulationInCities;
     }
 
@@ -120,7 +120,7 @@ public class Population {
      * method to get population of the continent/region/country not living in cities (including a %)
      * @return percentagePopulationNotInCities of the continent/region/country
      */
-    public float getPercentagePopulationNotInCities() {
+    public double getPercentagePopulationNotInCities() {
         return percentagePopulationNotInCities;
     }
 
@@ -128,7 +128,7 @@ public class Population {
      * method to set population of the continent/region/country not living in cities (including a %)
      * @param percentagePopulationNotInCities of the continent/region/country
      */
-    public void setPercentagePopulationNotInCities(float percentagePopulationNotInCities) {
+    public void setPercentagePopulationNotInCities(double percentagePopulationNotInCities) {
         this.percentagePopulationNotInCities = percentagePopulationNotInCities;
     }
 }
