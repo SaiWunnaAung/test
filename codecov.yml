@@ -1,0 +1,2 @@
+ignore:
+  - "src/main/java/com/napier/sem/App.java" #cannot be added as a unit test because main function included in App.java

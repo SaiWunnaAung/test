@@ -30,6 +30,7 @@ public class AppIntegrationTest {
         ArrayList<Country> countries = db.countryReportOne();
         assertNotNull(countries);
         assertEquals(countries.size() > 0, true);
+        report.countryReportTemplate(countries);
     }
 
     @Test
@@ -37,6 +38,7 @@ public class AppIntegrationTest {
         ArrayList<Country> countries = db.countryReportTwo("Asia");
         assertNotNull(countries);
         assertEquals(countries.size() > 0, true);
+        report.countryReportTemplate(countries);
     }
 
     @Test
@@ -44,6 +46,7 @@ public class AppIntegrationTest {
         ArrayList<City> cities = db.cityReportOne();
         assertNotNull(cities);
         assertEquals(cities.size() > 0, true);
+        report.cityReportTemplate(cities);
     }
 
     @Test
@@ -51,6 +54,7 @@ public class AppIntegrationTest {
         ArrayList<City> cities = db.cityReportTwo("Asia");
         assertNotNull(cities);
         assertEquals(cities.size() > 0, true);
+        report.cityReportTemplate(cities);
     }
 
     @Test
@@ -58,6 +62,7 @@ public class AppIntegrationTest {
         ArrayList<CapitalCity> capitalCities = db.capitalCityReportOne();
         assertNotNull(capitalCities);
         assertEquals(capitalCities.size() > 0, true);
+        report.capitalCityReportTemplate(capitalCities);
     }
 
     @Test
@@ -65,6 +70,7 @@ public class AppIntegrationTest {
         ArrayList<Population> populations = db.populationReportOne();
         assertNotNull(populations);
         assertEquals(populations.size() > 0, true);
+        report.simplePopulationReportTemplate(populations);
     }
 
     @Test
@@ -72,6 +78,7 @@ public class AppIntegrationTest {
         ArrayList<Population> populations = db.populationReportTwo("Europe");
         assertNotNull(populations);
         assertEquals(populations.size() > 0, true);
+        report.simplePopulationReportTemplate(populations);
     }
 
     @Test
@@ -79,6 +86,7 @@ public class AppIntegrationTest {
         ArrayList<Population> populations = db.populationReportThree("North America");
         assertNotNull(populations);
         assertEquals(populations.size() > 0, true);
+        report.simplePopulationReportTemplate(populations);
     }
 
     @Test
@@ -86,6 +94,7 @@ public class AppIntegrationTest {
         ArrayList<Population> populations = db.populationReportFour("United Kingdom");
         assertNotNull(populations);
         assertEquals(populations.size() > 0, true);
+        report.simplePopulationReportTemplate(populations);
     }
 
     @Test
@@ -93,6 +102,7 @@ public class AppIntegrationTest {
         ArrayList<Population> populations = db.populationReportSeven();
         assertNotNull(populations);
         assertEquals(populations.size() > 0, true);
+        report.advancePopulationReportTemplate(populations);
     }
 
     @AfterAll()
