@@ -1,6 +1,10 @@
 package com.napier.sem;
 
+import com.napier.sem.model.CapitalCity;
+import com.napier.sem.model.City;
 import com.napier.sem.model.Country;
+import com.napier.sem.model.Population;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,20 +24,80 @@ public class AppIntegrationTest {
         db = DatabaseConnection.Instance();
         db.connect("localhost:33060", 30000);
     }
-    @Test
-    void testGetCountry() throws SQLException {
-        Country countries = db.countryReportOne().get(0);
-        assertEquals(countries.getCode(), "CHN");
-//        System.out.println(countries.getCode());
-    }
 
     @Test
-    void testReportOne() throws SQLException {
+    void testCountryReportOne() throws SQLException {
         ArrayList<Country> countries = db.countryReportOne();
         assertNotNull(countries);
         assertEquals(countries.size() > 0, true);
-        report.countryReportTemplate(countries);
-//        System.out.println(countries.getCode());
     }
 
+    @Test
+    void testCountryReportTwo() throws SQLException {
+        ArrayList<Country> countries = db.countryReportTwo("Asia");
+        assertNotNull(countries);
+        assertEquals(countries.size() > 0, true);
+    }
+
+    @Test
+    void testCityReportOne() throws SQLException {
+        ArrayList<City> cities = db.cityReportOne();
+        assertNotNull(cities);
+        assertEquals(cities.size() > 0, true);
+    }
+
+    @Test
+    void testCityReportTwo() throws SQLException {
+        ArrayList<City> cities = db.cityReportTwo("Asia");
+        assertNotNull(cities);
+        assertEquals(cities.size() > 0, true);
+    }
+
+    @Test
+    void testCapitalCityReportOne() throws SQLException {
+        ArrayList<CapitalCity> capitalCities = db.capitalCityReportOne();
+        assertNotNull(capitalCities);
+        assertEquals(capitalCities.size() > 0, true);
+    }
+
+    @Test
+    void testPopulationReportOne() throws SQLException {
+        ArrayList<Population> populations = db.populationReportOne();
+        assertNotNull(populations);
+        assertEquals(populations.size() > 0, true);
+    }
+
+    @Test
+    void testPopulationReportTwo() throws SQLException {
+        ArrayList<Population> populations = db.populationReportTwo("Europe");
+        assertNotNull(populations);
+        assertEquals(populations.size() > 0, true);
+    }
+
+    @Test
+    void testPopulationReportThree() throws SQLException {
+        ArrayList<Population> populations = db.populationReportThree("North America");
+        assertNotNull(populations);
+        assertEquals(populations.size() > 0, true);
+    }
+
+    @Test
+    void testPopulationReportFour() throws SQLException {
+        ArrayList<Population> populations = db.populationReportFour("United Kingdom");
+        assertNotNull(populations);
+        assertEquals(populations.size() > 0, true);
+    }
+
+    @Test
+    void testPopulationReportSeven() throws SQLException {
+        ArrayList<Population> populations = db.populationReportSeven();
+        assertNotNull(populations);
+        assertEquals(populations.size() > 0, true);
+    }
+
+    @AfterAll()
+    static void end()
+    {
+        db.disconnect(); // Disconnect database connection after running all test
+    }
 }

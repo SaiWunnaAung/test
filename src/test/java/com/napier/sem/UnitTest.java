@@ -18,9 +18,8 @@ class UnitTest
     }
 
     @Test
-    void printSalariesTestNull()
+    void uniTestCityReportOne()
     {
-//        Test
         ArrayList<Country> countries = new ArrayList<Country>();
         Country country = new Country();
         country.setCode("code");
