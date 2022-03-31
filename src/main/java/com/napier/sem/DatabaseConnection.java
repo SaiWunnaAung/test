@@ -66,17 +66,13 @@ public class DatabaseConnection {
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect() {
+    public void disconnect() throws SQLException {
         //Check con is not null and close connection
         if (con != null) {
-            try {
                 // Close connection
                 con.close();
                 System.out.println("--------------------------------------");
                 System.out.println("Connection to database closed");
-            } catch (Exception e) {
-                System.out.println("Error closing connection to database");
-            }
         }
     }
 

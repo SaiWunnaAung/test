@@ -106,8 +106,7 @@ public class AppIntegrationTest {
     }
 
     @AfterAll()
-    static void end()
-    {
+    static void end() throws SQLException {
         db.disconnect(); // Disconnect database connection after running all test
     }
 }
