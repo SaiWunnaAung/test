@@ -17,12 +17,6 @@ jobs:
           distribution: 'adopt'
       - name: Unit Tests
         run: mvn -Dtest=com.napier.sem.UnitTest test
-        uses: codecov/codecov-action@v2
-        with:
-          # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          directory: ./target/site/jacoco
-          flags: Unit Tests # optional
-          verbose: true # optional (default = false)
 
   IntegrationTests:
     name: Integration Tests
@@ -53,7 +47,7 @@ jobs:
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
   build:
-    name: Build Run in Docker and Deploy Release
+    name: Build and Start Using docker-compose
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
