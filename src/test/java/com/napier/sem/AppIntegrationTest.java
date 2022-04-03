@@ -35,7 +35,7 @@ public class AppIntegrationTest {
         // Create database connection Instance
         db = DatabaseConnection.Instance();
         // Connect to the database
-        db.connect("localhost:33060", 0);
+        db.connect("localhost:33060", 30000);
     }
 
     /**
