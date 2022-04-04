@@ -71,7 +71,7 @@ jobs:
       - name: Package and Run docker compose
         run: |
           mvn package -DskipTests
-          docker-compose build
+          docker-compose build -t
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -79,24 +79,3 @@ jobs:
           automatic_release_tag: "latest"
           files: |
             ./target/*.jar
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: java-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'devopsnapier'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_c59fab7c75404f1dacffb4b4a8ce1d2f }}
-          package: '*.jar'
