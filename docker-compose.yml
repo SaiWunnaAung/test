@@ -16,6 +16,5 @@ services:
       - "33060:3306"
   nginx:
     build: web/.
-    restart: always
     ports:
       - "80:80"
