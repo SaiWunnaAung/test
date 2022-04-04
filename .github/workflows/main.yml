@@ -73,9 +73,6 @@ jobs:
           mvn package -DskipTests
           docker-compose -f "docker-compose.yml" up -d --build
           docker-compose down
-      - name: Stop containers
-        if: always()
-        run: docker-compose -f "docker-compose.yml" down
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
