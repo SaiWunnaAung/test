@@ -1,10 +1,14 @@
 package com.napier.sem;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.sql.SQLException;
 
 /**
  * Declaring public class for App
  */
+@SpringBootApplication
 public class App
 {
     /**
@@ -26,7 +30,8 @@ public class App
         } else {
             db.connect(args[0],Integer.parseInt(args[1]));
         }
-        app.reportMenu();
+//        app.reportMenu();
+        SpringApplication.run(App.class, args);
         //Remove database connection
         db.disconnect();
     }
@@ -77,9 +82,9 @@ public class App
             for(int i=0; i<reportItem.length;i++){
                 System.out.println(reportItem[i]);
             }
-            System.out.println("Choose Report : 24");
+            System.out.println("Choose Report : 5");
             // Call chooseMenu method
-            chooseMenu(24);
+            chooseMenu(5);
 
     }
 
@@ -121,9 +126,12 @@ public class App
                 report.countryReportTemplate(db.countryReportFour(5));// Print report
                 break;
 
-            /*If user choose 5 the system will print Not available in this version*/
+            /*If user choose 5 the system will print the top N populated countries in a continent where N is provided by the user*/
             case 5:
-                System.out.println("Not available in this version");
+                System.out.println("The top N populated countries in a continent where N is provided by the user");
+                System.out.println("Enter continent: Asia");
+                System.out.println("Enter number: 5");
+                report.countryReportTemplate(db.countryReportFive("Asia",5));// Print report
                 break;
 
             /*If user choose 6 the system will print Not available in this version*/

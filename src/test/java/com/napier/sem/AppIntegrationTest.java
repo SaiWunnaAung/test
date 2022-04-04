@@ -158,6 +158,7 @@ public class AppIntegrationTest {
         report.countryReportTemplate(countries);
     }
 
+
     /**
      * This method is integration test for City Report One
      * @throws SQLException

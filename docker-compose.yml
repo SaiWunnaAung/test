@@ -3,6 +3,9 @@ services:
   # Application Dockerfile is in same folder which is .
   app:
     build: .
+    expose:
+      - "8080"
+    command: mvn clean spring-boot:run
 
   # db is is db folder
   db:
@@ -11,3 +14,7 @@ services:
     restart: always
     ports:
       - "33060:3306"
+  nginx:
+    build: web/.
+    ports:
+      - "80:80"

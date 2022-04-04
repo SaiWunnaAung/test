@@ -1,8 +1,8 @@
 package com.napier.sem;
-import com.napier.sem.model.CapitalCity;
-import com.napier.sem.model.City;
-import com.napier.sem.model.Country;
-import com.napier.sem.model.Population;
+import com.napier.sem.model.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 /**
  * Declaring public class for DatabaseConnection
  */
+@RestController
 public class DatabaseConnection {
     /**
      * Create Database Connection object
@@ -74,6 +75,15 @@ public class DatabaseConnection {
                 System.out.println("--------------------------------------");
                 System.out.println("Connection to database closed");
         }
+    }
+
+    private long counter = 0;
+    private static final String template = "Hello, %s!";
+
+    @RequestMapping("/greeting2")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name)
+    {
+        return new Greeting(counter++, String.format(template, name));
     }
 
     /**
@@ -196,6 +206,45 @@ public class DatabaseConnection {
         ResultSet resultSet;
         //Write sql retrieve query for report
         String query = "select con.code, con.name, con.continent, con.region, con.population, cit.name as capital from country con join city cit on capital=id order by population DESC LIMIT "+topNum+" ";
+        //Create countries arraylist to store country data
+        ArrayList<Country> countries = new ArrayList<>();
+        //Assign connection object to statement variable
+        statement = con.createStatement();
+        // Run sql retrieve query and assign result to resultSet variable
+        resultSet = statement.executeQuery(query);
+        // Retrieve data from resultSet by using while loop
+        while (resultSet.next()) {
+            /* Create country object and set data in setter method */
+            Country country = new Country();
+            country.setName(resultSet.getString("name"));
+            country.setContinent(resultSet.getString("continent"));
+            country.setRegion(resultSet.getString("region"));
+            country.setPopulation(resultSet.getLong("population"));
+            country.setCapital(resultSet.getString("capital"));
+            country.setCode(resultSet.getString("code"));
+            // Add country object in countries array list
+            countries.add(country);
+        }
+        // Return countries array list
+        return countries;
+    }
+
+    /**
+     * Methods for retrieve data for CountryReportFour
+     * @param continent
+     * @param num
+     * @return countries ArrayList
+     * @throws SQLException
+     */
+    public ArrayList<Country> countryReportFive(String continent, int num) throws SQLException {
+        // Define statement variable
+        Statement statement;
+        // Define resultSet  variable
+        ResultSet resultSet;
+        //Write sql retrieve query for report
+        String query = "select con.code, con.name, con.continent, con.region, con.population, cit.name as " +
+                "capital from country con join city cit on capital=id " +
+                "where continent = '"+continent+"' order by population DESC LIMIT "+num+" ";
         //Create countries arraylist to store country data
         ArrayList<Country> countries = new ArrayList<>();
         //Assign connection object to statement variable
