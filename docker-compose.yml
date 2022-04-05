@@ -2,14 +2,14 @@ version: '3'
 services:
   # Application Dockerfile is in same folder which is .
   app:
-#    image: 40501792test.azurecr.io/app
+    image: 40501792test.azurecr.io/app
     build: .
     ports:
       - "8080:8080"
 
   # db is is db folder
   db:
-#    image: 40501792test.azurecr.io/db
+    image: 40501792test.azurecr.io/db
     build: db/.
     command: --default-authentication-plugin=mysql_native_password
     restart: always
