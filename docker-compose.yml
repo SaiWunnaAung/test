@@ -15,10 +15,10 @@ services:
     restart: always
     ports:
       - "33060:3306"
-#  nginx:
-##    image: 40501792test.azurecr.io/nginx
-#    build: web/.
-#    ports:
-#      - "80:80"
-#    depends_on:
-#      - app
+  nginx:
+    image: 40501792test.azurecr.io/nginx
+    build: web/.
+    ports:
+      - "80:80"
+    depends_on:
+      - app
