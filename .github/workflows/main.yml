@@ -68,11 +68,31 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Package and Run docker compose
-        run: |
-          mvn package -DskipTests
-          docker-compose -f "docker-compose.yml" up -d --build
-      - name: 'Build and push image'
+#      - name: Package and Run docker compose
+#        run: |
+#          mvn package -DskipTests
+#          docker-compose -f "docker-compose.yml" up -d --build
+#      - name: Azure Login
+#        uses: azure/docker-login@v1
+#        with:
+#          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+#          username: ${{ secrets.REGISTRY_USERNAME }}
+#          password: ${{ secrets.REGISTRY_PASSWORD }}
+#      - name: Push Image to azure
+#        run: |
+#          docker-compose push
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "latest"
+          files: |
+            ./target/*.jar
+  azure-deploy:
+    runs-on: ubuntu-20.04
+    needs: build
+    steps:
+      - name: Azure Login
         uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
@@ -81,21 +101,26 @@ jobs:
       - name: Push Image to azure
         run: |
           docker-compose push
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          automatic_release_tag: "latest"
-          files: |
-            ./target/*.jar
-      - name: 'Deploy to Azure Container Instances'
-        uses: 'azure/aci-deploy@v1'
-        with:
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
-          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          name: 40501792test
-          location: 'Central US'
+
+#      - name: 'Build and push image'
+#        uses: azure/docker-login@v1
+#        with:
+#          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+#          username: ${{ secrets.REGISTRY_USERNAME }}
+#          password: ${{ secrets.REGISTRY_PASSWORD }}
+#      - run: |
+##          docker compose push
+#          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/app:${{ github.sha }}
+#          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ap:${{ github.sha }}
+#
+#      - name: 'Deploy to Azure Container Instances'
+#        uses: 'azure/aci-deploy@v1'
+#        with:
+#          resource-group: ${{ secrets.RESOURCE_GROUP }}
+#          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+#          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+#          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+#          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+#          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+#          name: 40501792test
+#          location: 'Central US'
