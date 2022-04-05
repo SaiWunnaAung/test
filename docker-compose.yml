@@ -4,8 +4,8 @@ services:
   app:
     image: 40501792test.azurecr.io/app
     build: .
-    expose:
-      - "8080"
+    ports:
+      - "8080:8080"
     command: mvn clean spring-boot:run
     depends_on:
       - db
