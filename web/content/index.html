@@ -13,13 +13,9 @@
 </body>
 
 <script>
-    $.getJSON('http://time.jsontest.com', function(data) {
-
-        var text = `Date: ${data.date}<br>
-                    Time: ${data.time}<br>
-                    Unix time: ${data.milliseconds_since_epoch}`
-
-
+    var URL = "http://" + window.location.hostname + "/app/greeting";
+    $.getJSON(URL, function(data) {
+        var text = `Date: ${data.content}`
         $(".mypanel").html(text);
     });
 </script>
