@@ -81,6 +81,7 @@ jobs:
             ./target/*.jar
   build-and-deploy:
     runs-on: ubuntu-20.04
+    needs: build
     steps:
       # checkout the repo
       - name: 'Checkout GitHub Action'
