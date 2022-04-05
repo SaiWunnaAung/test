@@ -93,7 +93,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker compose up -d
+          docker compose push
 #          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/app:${{ github.sha }}
 #          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ap:${{ github.sha }}
 
