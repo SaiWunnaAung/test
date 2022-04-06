@@ -13,11 +13,9 @@ services:
   app:
     image: 40501792test.azurecr.io/app
     build: .
-    restart: always
+    restart: on-failure
     ports:
       - "8080:8080"
-    environment:
-      MYSQL_DB_HOST: db:3306
 
 #  nginx:
 #    image: 40501792test.azurecr.io/nginx
