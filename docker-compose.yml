@@ -13,8 +13,14 @@ services:
   app:
     image: 40501792test.azurecr.io/app
     build: .
+    restart: always
     ports:
       - "8080:8080"
+    depends_on:
+      - db
+    command: sh -c "/wait && /sayhello"
+    links:
+      - db:app_db
 
 #  nginx:
 #    image: 40501792test.azurecr.io/nginx
