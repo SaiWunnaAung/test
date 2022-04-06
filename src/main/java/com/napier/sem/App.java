@@ -23,17 +23,17 @@ public class App
 
     public static void main(String[] args) throws ClassNotFoundException, InterruptedException, SQLException {
         // Create  App object
-        app = new App();
+//        app = new App();
         //Add database connection
-        if (args.length < 1) {
-            db.connect("localhost:33060",0);
-        } else {
-            db.connect(args[0],Integer.parseInt(args[1]));
-        }
+//        if (args.length < 1) {
+//            db.connect("localhost:33060",0);
+//        } else {
+//            db.connect(args[0],Integer.parseInt(args[1]));
+//        }
 //        app.reportMenu();
         SpringApplication.run(App.class, args);
         //Remove database connection
-        db.disconnect();
+//        db.disconnect();
     }
 
     /**
