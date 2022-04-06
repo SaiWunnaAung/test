@@ -10,33 +10,17 @@
 </head>
 
 <body>
-<h1>Hello World8</h1>
+<h1>Hello World9</h1>
 <div class="mypanel"></div>
 </body>
 
 <script>
-    var settings = {
-        'cache': false,
-        'dataType': "jsonp",
-        "async": true,
-        "crossDomain": true,
-        "url": "http://localhost:8080/greeting",
-        "method": "GET",
-        "headers": {
-            "accept": "application/json",
-            "Access-Control-Allow-Origin":"*"
-        }
-    }
 
-    $.ajax(settings).done(function (response) {
-        console.log(response.content);
-
+    var URL = "https://" + window.location.hostname + "/app/greeting";
+    $.getJSON(URL, function(data) {
+        var text = `Date: ${data.content}`
+        $(".mypanel").html(text);
     });
-    // var URL = "http://" + window.location.hostname + "/app/greeting";
-    // $.getJSON(URL, function(data) {
-    //     var text = `Date: ${data.content}`
-    //     $(".mypanel").html(text);
-    // });
 </script>
 
 </html>
