@@ -21,11 +21,14 @@ body:
   - type: dropdown
     id: version
     attributes:
-      label: Version
-      description: What version of our software are you running?
+      label: Sprint1
+      description: What Sprint1 of our bug found?
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+        - Sprint-1
+        - Sprint-2
+        - Sprint-3
+        - Sprint-4
+        - Sprint-5
     validations:
       required: true
 
