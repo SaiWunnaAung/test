@@ -17,9 +17,9 @@ services:
     ports:
       - "8080:8080"
 
-#  nginx:
-#    image: 40501792test.azurecr.io/nginx
-#    build: web/.
-#    ports:
-#      - "80:80"
+  nginx:
+    image: 40501792test.azurecr.io/nginx
+    build: web/.
+    ports:
+      - "80:80"
 
