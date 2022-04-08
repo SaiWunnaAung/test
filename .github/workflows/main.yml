@@ -61,6 +61,9 @@ jobs:
       - UnitTests
       - IntegrationTests
     runs-on: ubuntu-20.04
+    environment:
+      name: production
+      url: https://40501792test.azurewebsites.net
     steps:
       - name: Checkout
         uses: actions/checkout@v2
