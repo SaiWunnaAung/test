@@ -57,7 +57,7 @@ public class DatabaseConnection {
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://"+location+"/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://worlddb.mysql.database.azure.com:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root_group4@worlddb", "*w&Dv5BMV");
                 System.out.println("Successfully connected");
                 break;
         }

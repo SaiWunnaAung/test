@@ -16,7 +16,7 @@
 
 <script>
 
-    var URL = "https://" + window.location.hostname + "/app/greeting";
+    var URL = "https://40501792test.azurewebsites.net/greeting";
     $.getJSON(URL, function(data) {
         var text = `Date: ${data.content}`
         $(".mypanel").html(text);

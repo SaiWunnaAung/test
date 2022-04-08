@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController
 {
     private long counter = 0;
-    private static final String template = "Hello, %s!";
+    private static final String template = "Hello2, %s!";
 
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name)
